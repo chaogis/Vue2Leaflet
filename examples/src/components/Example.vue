@@ -112,7 +112,9 @@
       style="height: 45%">
       <l-control-layers
         :position="layersPosition"
-        :collapsed="false" />
+        :collapsed="false"
+        :sort-layers="true"
+      />
       <l-tile-layer
         v-for="tileProvider in tileProviders"
         :key="tileProvider.name"
@@ -132,18 +134,23 @@
         :key="marker.id"
         :visible="marker.visible"
         :draggable="marker.draggable"
-        :lat-lng="marker.position"
+        :lat-lng.sync="marker.position"
         :icon="marker.icon"
         @click="alert(marker)">
         <l-popup :content="marker.tooltip" />
         <l-tooltip :content="marker.tooltip" />
       </l-marker>
-      <l-polyline
-        v-for="item in polylines"
-        :key="item.id"
-        :lat-lngs="item.points"
-        :visible="item.visible"
-        @click="alert(item)" />
+      <l-layer-group
+        layer-type="overlay"
+        name="Layer polyline"
+      >
+        <l-polyline
+          v-for="item in polylines"
+          :key="item.id"
+          :lat-lngs="item.points"
+          :visible="item.visible"
+          @click="alert(item)" />
+      </l-layer-group>
       <l-layer-group
         v-for="item in stuff"
         :key="item.id"
@@ -259,7 +266,7 @@ export default {
       center: [51.505, -0.09],
       opacity: 0.6,
       token: 'your token if using mapbox',
-      mapOptions: { zoomControl: false, attributionControl: false },
+      mapOptions: { zoomControl: false, attributionControl: false, zoomSnap: true },
       zoom: 13,
       minZoom: 1,
       maxZoom: 20,

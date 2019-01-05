@@ -10,7 +10,13 @@ export default {
     },
     name: {
       type: String,
-      default: null
+      custom: true,
+      default: undefined
+    },
+    layerType: {
+      type: String,
+      custom: true,
+      default: undefined
     },
     visible: {
       type: Boolean,
@@ -21,11 +27,12 @@ export default {
   mounted () {
     this.layerOptions = {
       attribution: this.attribution,
-      name: this.name,
       pane: this.pane
     };
   },
   beforeDestroy () {
+    this.unbindPopup();
+    this.unbindTooltip();
     this.parentContainer.removeLayer(this);
   },
   methods: {
@@ -40,6 +47,13 @@ export default {
         this.parentContainer.addLayer(this);
       }
     },
+    setLayerType (newVal, oldVal) {
+      if (newVal === oldVal) return;
+      this.parentContainer.removeLayer(this);
+      if (this.visible) {
+        this.parentContainer.addLayer(this);
+      }
+    },
     setVisible (newVal, oldVal) {
       if (newVal === oldVal) return;
       if (this.mapObject) {
@@ -48,6 +62,18 @@ export default {
         } else {
           this.parentContainer.removeLayer(this);
         }
+      }
+    },
+    unbindTooltip () {
+      const tooltip = this.mapObject ? this.mapObject.getTooltip() : null;
+      if (tooltip) {
+        tooltip.unbindTooltip();
+      }
+    },
+    unbindPopup () {
+      const popup = this.mapObject ? this.mapObject.getPopup() : null;
+      if (popup) {
+        popup.unbindPopup();
       }
     }
   }

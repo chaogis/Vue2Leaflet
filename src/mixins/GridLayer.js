@@ -15,13 +15,24 @@ export default {
     zIndex: {
       type: Number,
       default: 1
+    },
+    tileSize: {
+      type: Number,
+      default: 256
+    },
+    noWrap: {
+      type: Boolean,
+      default: false
     }
   },
   mounted () {
     this.gridLayerOptions = {
       ...this.layerOptions,
+      pane: this.pane,
       opacity: this.opacity,
-      zIndex: this.zIndex
+      zIndex: this.zIndex,
+      tileSize: this.tileSize,
+      noWrap: this.noWrap
     };
   }
 };

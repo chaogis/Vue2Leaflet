@@ -3,10 +3,11 @@ import propsBinder from '../utils/propsBinder.js';
 import findRealParent from '../utils/findRealParent.js';
 import { optionsMerger } from '../utils/optionsUtils.js';
 import Popper from '../mixins/Popper.js';
+import Options from '../mixins/Options.js';
 
 export default {
   name: 'LTooltip',
-  mixins: [Popper],
+  mixins: [Popper, Options],
   mounted () {
     const options = optionsMerger(this.popperOptions, this);
     this.mapObject = L.tooltip(options);
@@ -17,8 +18,8 @@ export default {
     this.parentContainer.mapObject.bindTooltip(this.mapObject);
   },
   beforeDestroy () {
-    if (this.parentContainer.mapObject && this.parentContainer.mapObject.getTooltip()) {
-      this.parentContainer.mapObject.unbindTooltip();
+    if (this.parentContainer) {
+      this.parentContainer.unbindTooltip();
     }
   }
 };

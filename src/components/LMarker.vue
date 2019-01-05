@@ -1,12 +1,14 @@
 <script>
 import propsBinder from '../utils/propsBinder.js';
 import findRealParent from '../utils/findRealParent.js';
+import debounce from '../utils/debounce.js';
 import { optionsMerger } from '../utils/optionsUtils.js';
 import Layer from '../mixins/Layer.js';
+import Options from '../mixins/Options.js';
 
 export default {
   name: 'LMarker',
-  mixins: [Layer],
+  mixins: [Layer, Options],
   props: {
     pane: {
       type: String,
@@ -31,10 +33,6 @@ export default {
       type: Number,
       custom: false,
       default: null
-    },
-    options: {
-      type: Object,
-      default: () => ({})
     }
   },
   data () {
@@ -51,6 +49,7 @@ export default {
     }, this);
     this.mapObject = L.marker(this.latLng, options);
     L.DomEvent.on(this.mapObject, this.$listeners);
+    this.mapObject.on('move', debounce(this.latLngSync, 100));
     propsBinder(this, this.mapObject, this.$options.props);
     this.parentContainer = findRealParent(this.$parent);
     this.parentContainer.addLayer(this, !this.visible);
@@ -77,11 +76,14 @@ export default {
           this.mapObject.setLatLng(newLatLng);
         }
       }
+    },
+    latLngSync (event) {
+      this.$emit('update:latLng', event.latlng);
     }
   },
   render: function (h) {
     if (this.ready && this.$slots.default) {
-      return h('div', {style: {display: 'none'}}, this.$slots.default);
+      return h('div', { style: { display: 'none' } }, this.$slots.default);
     }
     return null;
   }
