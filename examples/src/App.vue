@@ -4,92 +4,128 @@
       <li>
         <a
           href="#"
-          @click="currentView='simple'">Simple map</a>
+          @click="currentView='simple'"
+        >Simple map</a>
       </li>
       <li>
         <a
           href="#"
-          @click="currentView='marker-popup-example'">Custom Component</a>
+          @click="currentView='marker-popup-example'"
+        >Custom Component</a>
       </li>
       <li>
         <a
           href="#"
-          @click="currentView='multi-map'">Two maps</a>
+          @click="currentView='multi-map'"
+        >Two maps</a>
       </li>
       <li>
         <a
           href="#"
-          @click="currentView='custom-path'">Custom path</a>
+          @click="currentView='custom-path'"
+        >Custom path</a>
       </li>
       <li>
         <a
           href="#"
-          @click="currentView='custom-url-params'">Custom Url Params</a>
+          @click="currentView='custom-url-params'"
+        >Custom Url Params</a>
       </li>
       <li>
         <a
           href="#"
-          @click="currentView='custom-control'">Custom Leaflet Control</a>
+          @click="currentView='custom-control'"
+        >Custom Leaflet Control</a>
       </li>
       <li>
         <a
           href="#"
-          @click="currentView='set-bounds'">Set bounds</a>
+          @click="currentView='set-bounds'"
+        >Set bounds</a>
       </li>
       <li>
         <a
           href="#"
-          @click="currentView='example'">Some examples</a>
+          @click="currentView='example'"
+        >Some examples</a>
       </li>
       <li>
         <a
           href="#"
-          @click="currentView='geometry-test'">Geometry</a>
+          @click="currentView='geometry-test'"
+        >Geometry</a>
       </li>
       <li>
         <a
           href="#"
-          @click="currentView='popup-on-geometry-test'">Popup on Geometry</a>
+          @click="currentView='popup-on-geometry-test'"
+        >Popup on Geometry</a>
       </li>
       <li>
         <a
           href="#"
-          @click="currentView='world-copy-jump'">Jump on World Copy</a>
+          @click="currentView='world-copy-jump'"
+        >Jump on World Copy</a>
       </li>
       <li>
         <a
           href="#"
-          @click="currentView='geo-json'">GeoJSON</a>
+          @click="currentView='geo-json'"
+        >GeoJSON</a>
       </li>
       <li>
         <a
           href="#"
-          @click="currentView='geo-json2'">GeoJSON 2</a>
+          @click="currentView='geo-json2'"
+        >GeoJSON 2</a>
       </li>
       <li>
         <a
           href="#"
-          @click="currentView='wms-layers'">WMS Tile Layers</a>
+          @click="currentView='wms-layers'"
+        >WMS Tile Layers</a>
       </li>
       <li>
         <a
           href="#"
-          @click="currentView='crs'">CRS and Image Overlay</a>
+          @click="currentView='crs'"
+        >CRS and Image Overlay</a>
       </li>
       <li>
         <a
           href="#"
-          @click="currentView='stress'">Load Test</a>
+          @click="currentView='stress'"
+        >Load Test</a>
       </li>
       <li>
         <a
           href="#"
-          @click="currentView='icon'">Custom Marker Icons</a>
+          @click="currentView='icon'"
+        >Custom Marker Icons</a>
+      </li>
+      <li>
+        <a
+          href="#"
+          @click="currentView='esriTiledMapLayer'"
+        >Load Tiled MapServer</a>
+      </li>
+      <li>
+        <a
+          href="#"
+          @click="currentView='esriDynamicMapLayer'"
+        >Load Dynamic MapServer</a>
+      </li>
+      <li>
+        <a
+          href="#"
+          @click="currentView='WebTileLayer'"
+        >Load WebTile Layer</a>
       </li>
     </ul>
     <component
+      :is="currentView"
       id="full_div"
-      :is="currentView"/>
+    />
   </div>
 </template>
 
@@ -112,6 +148,9 @@ import WMSLayers from './components/WMSLayers';
 import WorldCopyJump from './components/WorldCopyJump';
 import LoadTest from './components/LoadTest';
 import Icon from './components/Icon';
+import EsriTiledMapLayer from './components/esri/EsriTiledMapLayer';
+import EsriDynamicMapLayer from './components/esri/EsriDynamicMapLayer';
+import WebTileLayer from './components/WebTileLayer';
 
 export default {
   name: 'App',
@@ -132,7 +171,10 @@ export default {
     'wms-layers': WMSLayers,
     'crs': CRSAndImageOverlay,
     stress: LoadTest,
-    Icon
+    Icon,
+    esriTiledMapLayer: EsriTiledMapLayer,
+    esriDynamicMapLayer: EsriDynamicMapLayer,
+    WebTileLayer
   },
   data () {
     return {

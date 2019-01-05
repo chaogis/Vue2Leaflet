@@ -25,6 +25,19 @@ import LRectangle from './components/LRectangle';
 import LTileLayer from './components/LTileLayer';
 import LTooltip from './components/LTooltip';
 import LWMSTileLayer from './components/LWMSTileLayer';
+/**
+ * Date: 2018-10-23
+ * Author: qin_chao
+ * Description: add component to support main web tile map
+ */
+import LWebTileLayer from './components/LWebTileLayer';
+/**
+ * Date: 2018-10-20
+ * Author: qin_chao
+ * Description: add component to support arcgis server
+ */
+import LEsriTiledMapLayer from './components/esri/LEsriTiledMapLayer';
+import LEsriDynamicMapLayer from './components/esri/LEsriDynamicMapLayer';
 
 export {
   L,
@@ -52,5 +65,8 @@ export {
   LRectangle,
   LTileLayer,
   LTooltip,
-  LWMSTileLayer
+  LWMSTileLayer,
+  LWebTileLayer,
+  LEsriTiledMapLayer,
+  LEsriDynamicMapLayer
 };
