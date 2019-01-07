@@ -121,6 +121,12 @@
           @click="currentView='WebTileLayer'"
         >Load WebTile Layer</a>
       </li>
+      <li>
+        <a
+          href="#"
+          @click="currentView='BaiDuLayer'"
+        >BaiDu Layer</a>
+      </li>
     </ul>
     <component
       :is="currentView"
@@ -151,6 +157,7 @@ import Icon from './components/Icon';
 import EsriTiledMapLayer from './components/esri/EsriTiledMapLayer';
 import EsriDynamicMapLayer from './components/esri/EsriDynamicMapLayer';
 import WebTileLayer from './components/WebTileLayer';
+import BaiDuLayer from './components/BaiDuLayer';
 
 export default {
   name: 'App',
@@ -174,7 +181,8 @@ export default {
     Icon,
     esriTiledMapLayer: EsriTiledMapLayer,
     esriDynamicMapLayer: EsriDynamicMapLayer,
-    WebTileLayer
+    WebTileLayer,
+    BaiDuLayer
   },
   data () {
     return {

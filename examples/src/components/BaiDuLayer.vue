@@ -9,6 +9,7 @@
     <l-map
       :zoom="zoom"
       :center="center"
+      :crs="baiduCrs"
       style="height: 80%"
       @update:center="centerUpdate"
       @update:zoom="zoomUpdate"
@@ -38,6 +39,7 @@
 
 <script>
 import { LMap, LWebTileLayer, LMarker, LPopup, LControlLayers } from 'vue2-leaflet';
+import { LCrsBaidu } from '../utils/customCrs.js';
 
 export default {
   name: 'Example',
@@ -52,28 +54,21 @@ export default {
     return {
       zoom: 13,
       center: L.latLng(30, 120),
-      // type: 'google.vec.map',
-      // attribution: '&copy; <a href="http://osm.org/copyright">Google Map</a> contributors',
+      baiduCrs: LCrsBaidu,
       marker: L.latLng(30, 120),
       currentZoom: 13,
       currentCenter: L.latLng(30, 120),
       showParagraph: false,
       layers: [
         {
-          id: 'amap.vec.map',
-          name: '高德街道图',
+          id: 'baidu.custom.map',
+          name: '百度地图',
           visible: true,
           type: 'tilelayer'
         },
         {
-          id: 'tianditu.vec.map',
-          name: '天地图街道图',
-          visible: false,
-          type: 'tilelayer'
-        },
-        {
-          id: 'geoq.normal.purplishblue',
-          name: '智图深蓝图',
+          id: 'baidu.img.map',
+          name: '百度影像图',
           visible: false,
           type: 'tilelayer'
         }

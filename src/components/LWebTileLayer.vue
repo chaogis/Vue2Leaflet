@@ -8,19 +8,16 @@ import propsBinder from '../utils/propsBinder.js';
 import findRealParent from '../utils/findRealParent.js';
 import { optionsMerger } from '../utils/optionsUtils.js';
 import TileLayer from '../mixins/TileLayer.js';
+import Options from '../mixins/Options.js';
 import { getWebTileOptions } from '../utils/webTileUtil.js';
 
 export default {
   name: 'LWebTileLayer',
-  mixins: [TileLayer],
+  mixins: [TileLayer, Options],
   props: {
     type: {
       type: String,
       default: 'google.vec.map'
-    },
-    option: {
-      type: Object,
-      default: () => ({})
     },
     tileLayerClass: {
       type: Function,

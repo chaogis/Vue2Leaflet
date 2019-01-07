@@ -9,10 +9,11 @@ import propsBinder from '../../utils/propsBinder.js';
 import findRealParent from '../../utils/findRealParent.js';
 import { optionsMerger } from '../../utils/optionsUtils.js';
 import ImageOverlay from '../../mixins/ImageOverlay.js';
+import Options from '../../mixins/Options.js';
 
 export default {
   name: 'LEsriDynamicMapLayer',
-  mixins: [ImageOverlay],
+  mixins: [ImageOverlay, Options],
   props: {
     url: {
       type: String,
@@ -24,11 +25,6 @@ export default {
       default: null
     },
     layerDefs: {
-      type: Object,
-      custom: true,
-      default: () => ({})
-    },
-    options: {
       type: Object,
       custom: true,
       default: () => ({})

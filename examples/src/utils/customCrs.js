@@ -1,5 +1,6 @@
-require('proj4');
 require('proj4leaflet');
+
+// import Proj4leaflet from 'proj4leaflet'
 
 // 请引入 proj4.js 和 proj4leaflet.js
 export const LCrsBaidu = new L.Proj.CRS('EPSG:3395', '+proj=merc +lon_0=0 +k=1 +x_0=1440 +y_0=255 +datum=WGS84 +units=m +no_defs', {

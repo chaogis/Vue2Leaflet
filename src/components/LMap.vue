@@ -9,7 +9,6 @@ import propsBinder from '../utils/propsBinder.js';
 import debounce from '../utils/debounce.js';
 import { optionsMerger } from '../utils/optionsUtils.js';
 import Options from '../mixins/Options.js';
-import { LCrsBaidu } from '../utils/customCrs.js';
 
 export default {
   name: 'LMap',
@@ -69,10 +68,6 @@ export default {
     maxBoundsViscosity: {
       type: Number,
       default: null
-    },
-    baiduCrs: {
-      type: Boolean,
-      default: false
     }
   },
   data () {
@@ -92,7 +87,7 @@ export default {
       maxBounds: this.maxBounds,
       maxBoundsViscosity: this.maxBoundsViscosity,
       worldCopyJump: this.worldCopyJump,
-      crs: this.baiduCrs ? LCrsBaidu : this.crs,
+      crs: this.crs,
       center: this.center,
       zoom: this.zoom
     }, this);
